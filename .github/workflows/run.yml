@@ -24,6 +24,7 @@ jobs:
     - name: Run ${{ matrix.branch }}
       env:
         GIT_ID_RSA: ${{ secrets.GIT_ID_RSA }}
+        REPO: git@github.com:tsao-chi/Tuinity-autoupstreamupdate.git
       run: |
         mkdir -p ~/.ssh
         ssh-keyscan -H -t rsa github.com > ~/.ssh/known_hosts
@@ -33,10 +34,16 @@ jobs:
         git config --global user.name 'ㄗㄠˋ ㄑㄧˊ'
         git clone -b ${{ matrix.branch }} https://github.com/Spottedleaf/Tuinity.git ~/Tuinity
         cd ~/Tuinity
+        BASE_COMMIT=$(git rev-parse HEAD)
         ./tuinity patch
-        ./tuinity upstream up
-        ./tuinity patch
-        ./tuinity rebuild
-        git add .
-        ./scripts/upstreamCommit.sh
-        git push --force git@github.com:tsao-chi/Tuinity-autoupstreamupdate.git
+        PAPER_BASE_COMMIT=$(cd Paper && git rev-parse HEAD)
+        if ./tuinity upstream up && ./tuinity patch && ./tuinity rebuild && [ $(cd Paper && git rev-parse HEAD) != "$PAPER_BASE_COMMIT" ] ;then
+          git add .
+          ./scripts/upstreamCommit.sh
+        fi
+        PAPER_COMMIT=$(cd Paper && git rev-parse HEAD)
+        if git clone --depth=1 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git rev-parse "$BASE_COMMIT") && [ $(cd REPO/Paper && git rev-parse HEAD) = "$PAPER_COMMIT" ] ;then
+          :
+        else
+          git push --force "$REPO"
+        fi
