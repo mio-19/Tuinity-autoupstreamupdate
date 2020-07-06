@@ -34,10 +34,7 @@ jobs:
         git clone -b ${{ matrix.branch }} https://github.com/Spottedleaf/Tuinity.git ~/Tuinity
         cd ~/Tuinity
         ./tuinity patch
-        cd Paper
-        git pull origin ${{ matrix.branch }}
-        cd ..
-        git add Paper
+        ./tuinity upstream up
         ./tuinity patch
         ./tuinity rebuild
         git add .
