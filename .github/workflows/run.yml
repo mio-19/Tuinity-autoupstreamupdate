@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         branch: [master, ver/1.16]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/setup-java@v1
       with:
@@ -42,7 +42,7 @@ jobs:
           ./scripts/upstreamCommit.sh
         fi
         PAPER_COMMIT=$(cd Paper && git rev-parse HEAD)
-        if git clone --depth=1 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git merge-base --is-ancestor "$BASE_COMMIT" HEAD) && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git merge-base --is-ancestor "$PAPER_COMMIT" HEAD) ;then
+        if git clone --depth=50 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git merge-base --is-ancestor "$BASE_COMMIT" HEAD) && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git merge-base --is-ancestor "$PAPER_COMMIT" HEAD) ;then
           :
         else
           git push --force "$REPO"
