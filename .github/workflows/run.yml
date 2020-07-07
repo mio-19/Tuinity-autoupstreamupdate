@@ -42,7 +42,7 @@ jobs:
           ./scripts/upstreamCommit.sh
         fi
         PAPER_COMMIT=$(cd Paper && git rev-parse HEAD)
-        if git clone --depth=1 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git rev-parse "$BASE_COMMIT") && (cd REPO && git submodule update --init --recursive) && [ "$(cd REPO/Paper && git rev-parse HEAD)" = "$PAPER_COMMIT" ] ;then
+        if git clone --depth=1 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git rev-parse "$BASE_COMMIT") && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git rev-parse "$PAPER_COMMIT") ;then
           :
         else
           git push --force "$REPO"
