@@ -9,7 +9,7 @@ This patch will be used to optimise out flush calls in later
 patches.
 
 diff --git a/src/main/java/net/minecraft/server/NetworkManager.java b/src/main/java/net/minecraft/server/NetworkManager.java
-index ed63bf3648153ce9ecab75e960c612337cbcbfe8..5b20eb32cbd70d3c2befd0fcaea5b9f3faf087d5 100644
+index c06b70fa490a3bf91ea20c8405178420d62e7df2..78f9c0c307f03e5fe4481a6aeac437b87e666b50 100644
 --- a/src/main/java/net/minecraft/server/NetworkManager.java
 +++ b/src/main/java/net/minecraft/server/NetworkManager.java
 @@ -70,6 +70,39 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {

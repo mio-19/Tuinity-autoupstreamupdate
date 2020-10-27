@@ -7,7 +7,7 @@ Should bring us back in-line with tracker performance
 before the loaded entity list reversion.
 
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index 49ff7cb7e5596af016c45559af777f6cfb0b9e3f..e65bcaebafa4353b0e947163a6c473630dc7239c 100644
+index 8eeb61b4c776bb47fd222d1eedc807f2f48877f3..019d6e35b6d52870b2963b8faa9cea8eea6a8670 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -2002,23 +2002,20 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {

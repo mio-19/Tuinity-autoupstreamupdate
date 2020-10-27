@@ -12,7 +12,7 @@ completion (completion of the world gen future,
 PlayerChunkMap#b(PlayerChunk, ChunkStatus)) was detected and fixed.
 
 diff --git a/src/main/java/net/minecraft/server/PlayerChunk.java b/src/main/java/net/minecraft/server/PlayerChunk.java
-index 37bdb0d6a04c661a7885072888706c195069c6c5..927a99abd4533c105792b4610e77f665f2ad34d5 100644
+index b864b15e2dfacceb4f9dd5973ec99da4785c0c54..e366649662361e709158ab767e1000edb0e3aee1 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunk.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunk.java
 @@ -563,6 +563,7 @@ public class PlayerChunk {
@@ -74,7 +74,7 @@ index 37bdb0d6a04c661a7885072888706c195069c6c5..927a99abd4533c105792b4610e77f665
                  if (chunk != null) {
                      playerchunkmap.callbackExecutor.execute(() -> {
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index e65bcaebafa4353b0e947163a6c473630dc7239c..a28e1f586998bf978d4de993304fbc3c454c933e 100644
+index 019d6e35b6d52870b2963b8faa9cea8eea6a8670..9e89412ae1d9ecb6739f3097d5e0d96e032a63d3 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -1230,7 +1230,10 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
