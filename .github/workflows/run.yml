@@ -47,7 +47,7 @@ jobs:
             git push --force "$REPO"
           fi
         else
-          if git clone --depth=50 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git merge-base --is-ancestor "$BASE_COMMIT" HEAD) && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git merge-base --is-ancestor "$PAPER_BASE_COMMIT" HEAD) ;then
+          if git clone --depth=50 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git merge-base --is-ancestor HEAD "$BASE_COMMIT") && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git merge-base --is-ancestor HEAD "$PAPER_BASE_COMMIT") ;then
             :
           else
             git push --force "$REPO"
