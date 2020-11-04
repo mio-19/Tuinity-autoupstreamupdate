@@ -4,7 +4,7 @@ on:
   push:
     branches: [ scripts ]
   schedule:
-    - cron:  '*/30 * * * *'
+    - cron:  '*/40 * * * *'
 
 jobs:
   build:
@@ -47,7 +47,7 @@ jobs:
             git push --force "$REPO"
           fi
         else
-          if git clone --depth=50 -b ${{ matrix.branch }} "$REPO" REPO && (cd REPO && git merge-base --is-ancestor HEAD "$BASE_COMMIT") && (cd REPO && git submodule update --init --recursive) && (cd REPO/Paper && git merge-base --is-ancestor HEAD "$PAPER_BASE_COMMIT") ;then
+          if git clone --depth=50 -b ${{ matrix.branch }} "$REPO" REPO && (git merge-base --is-ancestor "$(cd REPO && git rev-parse HEAD)" "$BASE_COMMIT") ;then
             :
           else
             git push --force "$REPO"
